@@ -1,4 +1,6 @@
 package api;
 
-public class RuleEngine {
+public interface  RuleEngine {
+
+    GameState getGameState(Board board, Player player1, Player player2);
 }

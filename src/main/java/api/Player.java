@@ -6,8 +6,6 @@ public class Player {
     Player(GameToken gameToken){
         this.token = gameToken;
     }
-
-
     public GameToken getToken() {
         return token;
     }
