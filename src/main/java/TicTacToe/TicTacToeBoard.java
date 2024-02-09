@@ -2,12 +2,10 @@ package TicTacToe;
 
 import api.*;
 
-import java.util.Iterator;
-
 
 public class TicTacToeBoard implements Board{
 
-    GameToken[][] board = new GameToken[TicTacToeConfigs.BOARD_LENGTH][TicTacToeConfigs.BOARD_WIDTH];
+    TicTacToeToken[][] board = new TicTacToeToken[TicTacToeConfigs.BOARD_LENGTH][TicTacToeConfigs.BOARD_WIDTH];
 
     @Override
     public boolean validateMove(Move move){
@@ -17,12 +15,29 @@ public class TicTacToeBoard implements Board{
     }
     @Override
     public GameToken getTokenAtCell(Cell cell){
-        return board[cell.getRow()][cell.getCol()];
+        return this.board[cell.getRow()][cell.getCol()];
+    }
+
+    @Override
+    public void displayBoardState() {
+        for(TicTacToeToken[] row : board){
+            for(TicTacToeToken gameToken:row){
+                System.out.print((gameToken != null ? gameToken.getSymbol() : " ") + " | ");
+            }
+
+            System.out.println();
+
+        }
     }
 
     @Override
     public void setTokenAtCell(Cell cell,GameToken symbol){
-        board[cell.getRow()][cell.getCol()] = symbol;
+        if(symbol instanceof TicTacToeToken) {
+            board[cell.getRow()][cell.getCol()] = (TicTacToeToken) symbol;
+        }else{
+            throw new IllegalArgumentException();
+        }
+
     }
 
 
@@ -30,9 +45,8 @@ public class TicTacToeBoard implements Board{
         return this.board;
     }
 
-
-
-    public GameToken getTokenAtCell(int row,int col){
+    @Override
+    public GameToken getTokenAtCell(int row, int col){
         return board[row][col];
     }
 

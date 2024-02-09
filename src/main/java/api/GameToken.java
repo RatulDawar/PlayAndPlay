@@ -1,9 +1,7 @@
 package api;
 
 public abstract class GameToken {
-    String symbol;
+    protected String symbol;
 
-    public String getSymbol() {
-        return symbol;
-    }
+    public abstract String getSymbol();
 }
